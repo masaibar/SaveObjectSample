@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static String toBase64(UserInfo userData) {
+    public static String toBase64(UserInfo userInfo) {
 
         ByteArrayOutputStream byteArrayOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
             objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            objectOutputStream.writeObject(userData);
+            objectOutputStream.writeObject(userInfo);
 
             byte[] bytes = byteArrayOutputStream.toByteArray();
             byte[] base64 = Base64.encode(bytes, Base64.NO_WRAP);
