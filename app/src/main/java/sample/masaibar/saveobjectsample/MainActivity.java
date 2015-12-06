@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -117,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
             byte[] bytes = byteArrayOutputStream.toByteArray();
             byte[] base64 = Base64.encode(bytes, Base64.NO_WRAP);
 
-            Log.d("UseInfo => base64", base64.toString());
-
             return new String(base64);
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
                 if (objectOutputStream != null) {
                     objectOutputStream.close();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
                 if (byteArrayOutputStream != null) {
                     byteArrayOutputStream.close();
                 }
@@ -139,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static UserInfo toUserInfo(String base64) {
-
-        Log.d("input base64 ", base64.toString());
 
         ByteArrayInputStream byteArrayInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -161,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
                 if (objectInputStream != null) {
                     objectInputStream.close();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
                 if (byteArrayInputStream != null) {
                     byteArrayInputStream.close();
                 }
